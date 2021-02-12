@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class Character : MonoBehaviour
     public Route currentRoute;
     int routePosition;
     public int steps;
+    public Text DiceText;
 
     bool isMoving;
 
@@ -17,7 +20,10 @@ public class Character : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q)&& !isMoving)
         {
+            //steps = DiceNumText.diceNumber;
+
             steps = Random.Range(1, 7);
+            DiceText.text = steps.ToString();
             Debug.Log("Dice Number = " + steps);
 
             if (routePosition + steps < currentRoute.childSquareList.Count)
