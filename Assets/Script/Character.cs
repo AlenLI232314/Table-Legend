@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, IDamageable<int>, IKillable
 {
+    
     //tell the character the moving route
 
+    public DiceRoller diceRoller;
     public Route currentRoute;
     int routePosition;
     public int steps;
-
     bool isMoving;
 
     //roll dice
@@ -17,7 +18,8 @@ public class Character : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q)&& !isMoving)
         {
-            steps = Random.Range(1, 7);
+            diceRoller.RollDice(Dice.Six);
+            steps = diceRoller.SixSidedDieResult;
             Debug.Log("Dice Number = " + steps);
 
             if (routePosition + steps < currentRoute.childSquareList.Count)
@@ -68,4 +70,28 @@ public class Character : MonoBehaviour
 
        }
 
+    public void TakeDamage(int damageTaken)
+    {
+        
+    }
+
+    public void OnDamage()
+    {
+        
+    }
+
+    public void HealDamage(int damageHealed)
+    {
+        
+    }
+
+    public void Kill()
+    {
+        
+    }
+
+    public void OnKill()
+    { 
+
+    }
 }
